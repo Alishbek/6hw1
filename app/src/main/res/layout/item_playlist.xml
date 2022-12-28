@@ -19,6 +19,7 @@
             android:id="@+id/iv_video"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:scaleType="centerCrop"
             android:src="@color/teal_200" />
 
         <TextView

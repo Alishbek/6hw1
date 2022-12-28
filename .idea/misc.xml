@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/User/AndroidStudioProjects/6hw1/app/src/main/res/layout/activity_main.xml" value="0.75" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/6hw1/app/src/main/res/layout/activity_main.xml" value="0.9" />
         <entry key="..\:/Users/User/AndroidStudioProjects/6hw1/app/src/main/res/layout/fragment_playlist.xml" value="0.25" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/6hw1/app/src/main/res/layout/item_playlist.xml" value="0.5" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/6hw1/app/src/main/res/layout/item_playlist.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/6hw1/app/src/main/res/layout/no_internet_connection.xml" value="0.25" />
       </map>
     </option>
   </component>

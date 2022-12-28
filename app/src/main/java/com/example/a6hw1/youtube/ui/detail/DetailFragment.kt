@@ -1,6 +1,7 @@
 package com.example.a6hw1.youtube.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +14,10 @@ import com.example.a6hw1.youtube.ui.playlist.PlaylistFragment
 import com.example.a6hw1.youtube.ui.playlist.PlaylistViewModel
 
 
-class DetailFragment : BaseFragment<FragmentDetailBinding, PlaylistViewModel>() {
+class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
 
-    override val viewModel: PlaylistViewModel by lazy {
-        ViewModelProvider(this)[PlaylistViewModel::class.java]
+    override val viewModel: DetailViewModel by lazy {
+        ViewModelProvider(this)[DetailViewModel::class.java]
     }
 
     override fun inflateViewBinding(
@@ -27,15 +28,16 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, PlaylistViewModel>() 
     }
 
 
-
     override fun initListener() {
         super.initListener()
     }
 
     override fun initView() {
-        TODO("Not yet implemented")
+        val id = arguments?.getString("id")
+        viewModel.getPlaylistItems(id.toString()).observe(viewLifecycleOwner){
+            Log.e("ololo", "initView: " + it)
+        }
     }
-
 
 
 }

@@ -27,9 +27,11 @@ abstract class BaseFragment<VB : ViewBinding, VM: BaseViewModel> : Fragment() {
         initView()
         initListener()
         initViewModel()
+        checkInternet()
     }
 
     abstract fun initView()
     open fun initListener(){}
     open fun initViewModel(){}
+    open fun checkInternet(){}
 }

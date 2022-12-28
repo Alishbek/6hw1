@@ -16,10 +16,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         return ActivityMainBinding.inflate(inflater)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-            Navigation.findNavController(this, R.id.mainActivity).navigate(R.id.action_mainActivity_to_playlistFragment)
-    }
+//    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+//        super.onCreate(savedInstanceState, persistentState)
+//            Navigation.findNavController(this, R.id.mainActivity).navigate(R.id.action_mainActivity_to_playlistFragment)
+//    }
 
 
 

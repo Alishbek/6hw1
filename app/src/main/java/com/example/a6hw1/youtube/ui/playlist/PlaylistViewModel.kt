@@ -24,6 +24,7 @@ class PlaylistViewModel: BaseViewModel() {
         apiService.getPlaylist().enqueue(object : Callback<Playlist> {
             override fun onResponse(call: Call<Playlist>, response: Response<Playlist>) {
                 if (response.isSuccessful) {
+                    Log.e("ololo", "onResponse: " + response)
                     data.value = response.body()
                 }
             }
