@@ -1,4 +1,4 @@
-package com.example.a6hw1.youtube.ui
+package com.example.a6hw1.youtube
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

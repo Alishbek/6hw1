@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.a6hw1.R
 import com.example.a6hw1.databinding.FragmentPlaylistBinding
+import com.example.a6hw1.youtube.App
 import com.example.a6hw1.youtube.base.BaseFragment
 import com.example.a6hw1.youtube.ui.playlist.adapter.PlaylistAdapter
 import com.example.a6hw1.youtube.utils.isOnline
@@ -44,7 +45,8 @@ class PlaylistFragment() : BaseFragment<FragmentPlaylistBinding, PlaylistViewMod
         super.initViewModel()
 
         viewModel.getPlaylist().observe(viewLifecycleOwner) {
-            Log.e("ololo", "initViewModel: " + it)
+            App.db.dao().insertPlaylist(it)
+//            Log.e("ololo", "initViewModel: " + it)
             adapter.addData(it.items)
 
         }

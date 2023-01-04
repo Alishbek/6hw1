@@ -1,4 +1,4 @@
-package com.example.a6hw1.youtube
+package com.example.a6hw1.youtube.`object`
 
 object Constant {
     const val PART = "contentDetails, id, snippet"

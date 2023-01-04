@@ -1,7 +1,7 @@
 package com.example.a6hw1.youtube.data.remote
 
 import com.example.a6hw1.BuildConfig
-import com.example.a6hw1.youtube.Constant
+import com.example.a6hw1.youtube.`object`.Constant
 import com.example.a6hw1.youtube.model.Playlist
 import retrofit2.Call
 import retrofit2.http.GET
