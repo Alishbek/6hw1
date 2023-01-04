@@ -11,6 +11,7 @@ import com.example.a6hw1.R
 import com.example.a6hw1.databinding.FragmentPlaylistBinding
 import com.example.a6hw1.youtube.App
 import com.example.a6hw1.youtube.base.BaseFragment
+import com.example.a6hw1.youtube.network.Status
 import com.example.a6hw1.youtube.ui.playlist.adapter.PlaylistAdapter
 import com.example.a6hw1.youtube.utils.isOnline
 
@@ -44,11 +45,25 @@ class PlaylistFragment() : BaseFragment<FragmentPlaylistBinding, PlaylistViewMod
     override fun initViewModel() {
         super.initViewModel()
 
-        viewModel.getPlaylist().observe(viewLifecycleOwner) {
-            App.db.dao().insertPlaylist(it)
-//            Log.e("ololo", "initViewModel: " + it)
-            adapter.addData(it.items)
+        viewModel.getPlaylist.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    viewModel.loading.value = false
+                    adapter.addData(it.data?.items)
+                }
+                Status.LOADING -> {
+                    viewModel.loading.value = true
+                }
+                Status.ERROR
+                -> {
+                    viewModel.loading.value = false
+                    Log.e("ololo", "initViewModel: " + it.msg)
 
+                }
+            }
+        }
+        viewModel.loading.observe(viewLifecycleOwner){
+            binding.progressBar.isVisible = it
         }
         binding.recyclerPlaylist.adapter = adapter
     }
@@ -56,8 +71,8 @@ class PlaylistFragment() : BaseFragment<FragmentPlaylistBinding, PlaylistViewMod
     override fun checkInternet() {
         super.checkInternet()
         val online = isOnline(requireContext())
-            binding.recyclerPlaylist.isVisible = online
-            binding.noInternetContainer.isVisible = !online
+        binding.recyclerPlaylist.isVisible = online
+        binding.noInternetContainer.isVisible = !online
 
     }
 
