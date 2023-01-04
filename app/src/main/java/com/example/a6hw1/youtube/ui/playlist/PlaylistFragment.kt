@@ -44,8 +44,8 @@ class PlaylistFragment() : BaseFragment<FragmentPlaylistBinding, PlaylistViewMod
 
     override fun initViewModel() {
         super.initViewModel()
-
-        viewModel.getPlaylist.observe(viewLifecycleOwner) {
+        //Local data
+        viewModel.getPlaylistDB.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     viewModel.loading.value = false
@@ -62,11 +62,36 @@ class PlaylistFragment() : BaseFragment<FragmentPlaylistBinding, PlaylistViewMod
                 }
             }
         }
+
+        //Remote data
+        viewModel.getPlaylist.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    viewModel.loading.value = false
+                    adapter.addData(it.data?.items)
+                    it.data?.let { it1 -> viewModel.setPlaylistDB(it1) }
+                }
+                Status.LOADING -> {
+                    viewModel.loading.value = true
+                }
+                Status.ERROR
+                -> {
+                    viewModel.loading.value = false
+                    Log.e("ololo", "initViewModel: " + it.msg)
+
+                }
+            }
+        }
+        viewModel.setPlaylistDB.observe(viewLifecycleOwner, {
+            Log.e("ololo", "initViewModel: " + it )
+        })
         viewModel.loading.observe(viewLifecycleOwner){
             binding.progressBar.isVisible = it
         }
         binding.recyclerPlaylist.adapter = adapter
     }
+
+
 
     override fun checkInternet() {
         super.checkInternet()

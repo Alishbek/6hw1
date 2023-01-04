@@ -8,8 +8,7 @@ class App: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        db = Room.databaseBuilder(applicationContext, AppDataBase::class.java,"playlist.db")
-            .allowMainThreadQueries().build()
+        db = Room.databaseBuilder(applicationContext, AppDataBase::class.java,"playlist.db").build()
     }
 
     companion object{

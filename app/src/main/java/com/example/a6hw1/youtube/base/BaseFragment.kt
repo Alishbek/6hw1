@@ -24,10 +24,10 @@ abstract class BaseFragment<VB : ViewBinding, VM: BaseViewModel> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkInternet()
         initView()
         initListener()
         initViewModel()
-        checkInternet()
     }
 
     abstract fun initView()

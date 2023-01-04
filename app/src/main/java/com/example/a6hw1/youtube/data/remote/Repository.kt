@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import com.example.a6hw1.youtube.App
+import com.example.a6hw1.youtube.model.Item
 import com.example.a6hw1.youtube.model.Playlist
 import com.example.a6hw1.youtube.network.Resource
 import kotlinx.coroutines.Dispatchers
@@ -29,15 +31,34 @@ class Repository {
 
     }
 
-    fun getPlaylistItems(playlistId: String): LiveData<Resource<Playlist>> = liveData(Dispatchers.IO) {
-        emit(Resource.loading())
-        val result = apiService.getPlaylistItems(playlistId = playlistId)
 
-        if (result.isSuccessful) {
-            emit(Resource.success(result.body()))
-        } else {
-            emit(Resource.error(result.message()))
+
+    fun getPlaylistItems(playlistId: String): LiveData<Resource<Playlist>> =
+        liveData(Dispatchers.IO) {
+            emit(Resource.loading())
+            val result = apiService.getPlaylistItems(playlistId = playlistId)
+
+            if (result.isSuccessful) {
+                emit(Resource.success(result.body()))
+            } else {
+                emit(Resource.error(result.message()))
+            }
+
         }
-
+    fun setPlaylistDB(playlist: Playlist): LiveData<Resource<Boolean>> = liveData(Dispatchers.IO) {
+        emit(Resource.loading())
+        App.db.dao().insertPlaylist(playlist)
+        emit(Resource.success(true))
     }
+
+    fun getPlaylistDB(): LiveData<Resource<Playlist>> = liveData(Dispatchers.IO) {
+        emit(Resource.loading())
+        val result = App.db.dao().getPlaylist()
+        if (result != null) {
+            emit(Resource.success(result))
+        } else {
+            emit(Resource.error("Empty data"))
+        }
+    }
+
 }
