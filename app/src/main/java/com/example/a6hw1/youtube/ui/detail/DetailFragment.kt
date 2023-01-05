@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.a6hw1.R
 import com.example.a6hw1.databinding.FragmentDetailBinding
 import com.example.a6hw1.youtube.base.BaseFragment
@@ -32,6 +33,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
 
     override fun initListener() {
         super.initListener()
+        binding.ibBack.setOnClickListener{
+            findNavController().navigate(R.id.playlistFragment)
+        }
+        binding.tvBack.setOnClickListener {
+            findNavController().navigate(R.id.playlistFragment)
+        }
     }
 
     override fun initView() {
